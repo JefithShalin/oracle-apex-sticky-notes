@@ -1,0 +1,6 @@
+BEGIN
+  DELETE FROM sticky_notes
+  WHERE  note_id    = TO_NUMBER(APEX_APPLICATION.G_X01)
+  AND    created_by = SYS_CONTEXT('APEX$SESSION','APP_USER');
+  COMMIT;
+END;
