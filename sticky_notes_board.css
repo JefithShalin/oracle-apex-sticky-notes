@@ -1,0 +1,129 @@
+#notes-board {
+  position      : relative;
+  min-height    : 620px;
+  width         : 100%;
+  background    : #000000;
+  background-image:
+    radial-gradient(circle, #c8c4be 1px, transparent 1px);
+  background-size : 28px 28px;
+  border-radius : 10px;
+  border        : 1px solid #ddd;
+  overflow      : hidden;
+}
+
+#note-toolbar {
+  display       : flex;
+  align-items   : center;
+  gap           : 12px;
+  padding       : 0 4px 12px;
+  flex-wrap     : wrap;
+}
+
+.btn-color {
+  width         : 28px;
+  height        : 28px;
+  border-radius : 50%;
+  border        : 2.5px solid transparent;
+  cursor        : pointer;
+  transition    : transform .15s, border-color .15s, box-shadow .15s;
+  padding       : 0;
+}
+
+.btn-color:hover {
+  transform    : scale(1.2);
+  border-color : rgba(0,0,0,0.25);
+  box-shadow   : 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.sticky-note {
+  position       : absolute;
+  width          : 215px;
+  min-height     : 185px;
+  border-radius  : 6px 6px 5px 5px;
+  box-shadow     : 3px 4px 14px rgba(0,0,0,0.22),
+                   0 1px 3px rgba(0,0,0,0.12);
+  display        : flex;
+  flex-direction : column;
+  z-index        : 10;
+  font-family    : "Segoe UI", "Helvetica Neue", sans-serif;
+  font-size      : 13.5px;
+  transition     : box-shadow .15s;
+}
+
+.sticky-note:focus-within {
+  z-index    : 50;
+  box-shadow : 5px 6px 22px rgba(0,0,0,0.32),
+               0 2px 6px rgba(0,0,0,0.15);
+}
+
+.sticky-note .note-header {
+  display         : flex;
+  justify-content : space-between;
+  align-items     : center;
+  padding         : 6px 8px 5px;
+  cursor          : move;
+  border-radius   : 6px 6px 0 0;
+  background      : rgba(0,0,0,0.10);
+  user-select     : none;
+  flex-shrink     : 0;
+}
+
+.note-delete {
+  width         : 20px;
+  height        : 20px;
+  border-radius : 50%;
+  border        : none;
+  background    : transparent;
+  cursor        : pointer;
+  display       : flex;
+  align-items   : center;
+  justify-content: center;
+  font-size     : 13px;
+  color         : rgba(0,0,0,0.35);
+  padding       : 0;
+  transition    : background .12s, color .12s;
+}
+
+.note-delete:hover {
+  background : rgba(0,0,0,0.15);
+  color      : #b00;
+}
+
+.sticky-note .note-body {
+  flex        : 1;
+  padding     : 9px 11px 11px;
+  outline     : none;
+  cursor      : text;
+  min-height  : 120px;
+  word-wrap   : break-word;
+  white-space : pre-wrap;
+  line-height : 1.55;
+  color       : #222;
+}
+
+.sticky-note .note-body:empty:before {
+  content        : "Type your note here...";
+  color          : rgba(0,0,0,0.30);
+  pointer-events : none;
+}
+
+.sticky-note.yellow { background: #fff475; }
+.sticky-note.pink   { background: #f28b82; }
+.sticky-note.blue   { background: #cbf0f8; }
+.sticky-note.green  { background: #ccff90; }
+.sticky-note.purple { background: #d7aefb; }
+.sticky-note.orange { background: #fbbc04; }
+
+.note-timestamp {
+  font-size  : 10px;
+  color      : rgba(0,0,0,0.35);
+  padding    : 0 11px 6px;
+  text-align : right;
+  flex-shrink: 0;
+}
+
+@keyframes noteIn {
+  from { opacity: 0; transform: scale(0.85) rotate(-2deg); }
+  to   { opacity: 1; transform: scale(1)    rotate(0deg);  }
+}
+.sticky-note { animation: noteIn 0.2s ease-out forwards; }
